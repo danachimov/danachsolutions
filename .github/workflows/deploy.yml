@@ -5,6 +5,11 @@ on:
     branches: [main]
   workflow_dispatch: {}
 
+# Run the (still Node 20) actions on Node 24, ahead of GitHub forcing it on
+# 2026-06-16. Silences the deprecation warning without pinning unreleased versions.
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 # Avoid overlapping deploys clobbering each other.
 concurrency:
   group: deploy-${{ github.ref }}
