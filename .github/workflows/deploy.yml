@@ -45,3 +45,9 @@ jobs:
           # so deploy into the login root directly — NOT ./public_html/ (which
           # would nest the site one level too deep at public_html/public_html/).
           server-dir: ./
+          # Next.js randomizes the build ID every build, so the _next/ paths
+          # churn each deploy. Incremental sync then tries to delete the previous
+          # build's files and Hostinger's FTP errors with 550. A clean-slate
+          # upload (wipe server-dir, upload fresh ./out) is deterministic and
+          # avoids that. Trade-off: full upload each run + a brief window mid-deploy.
+          dangerous-clean-slate: true
