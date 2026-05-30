@@ -36,4 +36,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./out/
-          server-dir: ./public_html/
+          # This FTP account is rooted at the domain's web root (public_html),
+          # so deploy into the login root directly — NOT ./public_html/ (which
+          # would nest the site one level too deep at public_html/public_html/).
+          server-dir: ./
