@@ -105,17 +105,20 @@ export default function Home() {
               />
             </div>
             <div className="about-teaser">
-              <h2>A career built in CPG</h2>
+              <h2>35 Years of Turning Ideas into Results</h2>
               <p>
-                For 35 years, I have led innovation and project management
-                programs at the highest levels of innovation-led industries
-                &mdash; from global product launches to enterprise transformation
-                initiatives.
+                For more than three decades, I&rsquo;ve led innovation and project
+                management programs across the consumer packaged goods
+                industry&mdash;from global product launches to complex business
+                transformations.
               </p>
               <p>
-                Today, DANACH Solutions helps companies bring structure to
-                complexity, speed to innovation, and rigor to execution. PMP and
-                DASM certified.
+                Today, DANACH Solutions helps organizations accelerate
+                innovation, navigate complexity, and deliver strategic initiatives
+                with confidence and precision.
+              </p>
+              <p>
+                <strong>PMP&reg; and DASM&reg; Certified</strong>
               </p>
               <Link href="/about" className="btn-dark">
                 Read the full story
