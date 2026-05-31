@@ -42,7 +42,11 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={poppins.variable} suppressHydrationWarning>
-      <body>
+      {/* suppressHydrationWarning on <body>: browser extensions (e.g. ClickUp,
+          Grammarly) inject classes/attributes onto <body> before React
+          hydrates, which would otherwise log a hydration-mismatch warning.
+          This only suppresses warnings for <body>'s own attributes. */}
+      <body suppressHydrationWarning>
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
         <Header />
         <main>{children}</main>
