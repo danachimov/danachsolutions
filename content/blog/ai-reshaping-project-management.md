@@ -7,10 +7,10 @@ category: "AI & Innovation"
 author: "Dan Achimov"
 readingTime: "4 min read"
 excerpt: "Artificial intelligence is moving from buzzword to backbone in how innovation programs are planned, tracked, and delivered. Here is where it actually moves the needle."
-cover: "/assets/hero-home.jpg"
-coverAlt: "Project team collaborating in a modern office"
-coverWidth: 1400
-coverHeight: 868
+cover: "/assets/blog/ai-project-management.jpg"
+coverAlt: "Robotic hand interacting with a project-management dashboard"
+coverWidth: 1600
+coverHeight: 969
 ---
 
 For decades, project management in consumer packaged goods has been a discipline of spreadsheets, status meetings, and hard-won institutional knowledge. That foundation is not going away — but the tools sitting on top of it are changing fast. AI is beginning to absorb the repetitive, low-judgment work that used to consume a project manager's week.
