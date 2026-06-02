@@ -107,10 +107,25 @@ export function getMonthGroups(): MonthGroup[] {
   return groups;
 }
 
-// Year > Month tree for the archive sidebar, newest first.
-export function getArchive(): ArchiveYear[] {
+// The N most recent month sections (default 3) — used to keep the main
+// blog page tight. Because month sections are already "newest first" and
+// only contain months that have posts, this is exactly "the current month
+// plus the previous months that have posts," falling back gracefully when
+// the current calendar month has none.
+export function getRecentMonthGroups(limit = 3): MonthGroup[] {
+  return getMonthGroups().slice(0, limit);
+}
+
+// Total number of months that have posts (to decide whether to show the
+// "View full archive" link).
+export function getMonthCount(): number {
+  return getMonthGroups().length;
+}
+
+// Year > Month tree (newest first) built from a set of month groups.
+function buildArchive(groups: MonthGroup[]): ArchiveYear[] {
   const years: ArchiveYear[] = [];
-  for (const group of getMonthGroups()) {
+  for (const group of groups) {
     const { year, monthName, id } = monthMeta(group.posts[0].date);
     let y = years.find((yr) => yr.year === year);
     if (!y) {
@@ -120,4 +135,14 @@ export function getArchive(): ArchiveYear[] {
     y.months.push({ id, label: monthName, count: group.posts.length });
   }
   return years;
+}
+
+// Full archive tree (all months).
+export function getArchive(): ArchiveYear[] {
+  return buildArchive(getMonthGroups());
+}
+
+// Archive tree limited to the recent months shown on the main blog page.
+export function getRecentArchive(limit = 3): ArchiveYear[] {
+  return buildArchive(getMonthGroups().slice(0, limit));
 }

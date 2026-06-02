@@ -2,7 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import type { BlogPost } from "../blog/posts";
 
-export default function BlogCard({ post }: { post: BlogPost }) {
+// Only the fields a card needs — lets the card render from lightweight,
+// serializable data passed to client components (no post body/html required).
+export type BlogCardData = Pick<
+  BlogPost,
+  "slug" | "title" | "excerpt" | "dateDisplay" | "category" | "cover"
+>;
+
+export default function BlogCard({ post }: { post: BlogCardData }) {
   return (
     <Link href={`/blog/${post.slug}`} className="blog-card">
       <div className="blog-card-image">

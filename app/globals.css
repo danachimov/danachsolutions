@@ -979,8 +979,73 @@ html.dark .blog-card:hover { border-color: var(--brand-red); }
 }
 html.dark .blog-archive { background: var(--bg-card-alt); }
 @media (min-width: 1024px) {
-  .blog-archive { position: sticky; top: 8rem; }
+  .blog-sidebar, .blog-archive { position: sticky; top: 8rem; }
 }
+
+/* Blog search / category filter */
+.blog-search { margin-bottom: 1.5rem; }
+.blog-search-label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--brand-red);
+  margin-bottom: 0.5rem;
+}
+.blog-search input {
+  width: 100%;
+  padding: 0.6rem 0.85rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+html.dark .blog-search input { background: var(--bg-card-alt); }
+.blog-search input:focus {
+  outline: 2px solid rgba(209,45,54,0.4);
+  border-color: var(--brand-red);
+}
+.blog-cat-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+.blog-chip {
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.3rem 0.7rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.blog-chip:hover { border-color: var(--brand-red); color: var(--brand-red); }
+.blog-chip.active { background: var(--brand-red); border-color: var(--brand-red); color: #fff; }
+.blog-clear {
+  display: inline-block;
+  margin-top: 0.85rem;
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--brand-red);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.blog-results-count {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+.blog-empty { color: var(--text-secondary); }
 .blog-archive-title {
   font-size: 0.8125rem;
   font-weight: 700;
@@ -1022,6 +1087,21 @@ html.dark .blog-archive { background: var(--bg-card-alt); }
 }
 .blog-archive li a:hover { color: var(--brand-red); }
 .blog-archive li span { color: var(--text-muted); }
+.blog-archive-link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--brand-red);
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+.blog-archive-link:hover { text-decoration: underline; }
+.blog-more {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+}
 
 /* PRIVACY POLICY PAGE */
 .privacy-card {

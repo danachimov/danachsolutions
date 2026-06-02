@@ -1,6 +1,15 @@
 import type { Metadata } from "next";
-import BlogCard from "../components/BlogCard";
-import { getMonthGroups, getArchive } from "./posts";
+import BlogBrowser from "../components/BlogBrowser";
+import type { BlogCardData } from "../components/BlogCard";
+import {
+  getRecentMonthGroups,
+  getRecentArchive,
+  getMonthCount,
+  getAllPosts,
+  type BlogPost,
+} from "./posts";
+
+const RECENT_MONTHS = 3;
 
 export const metadata: Metadata = {
   title: "Blog — DANACH Solutions, LLC",
@@ -8,9 +17,29 @@ export const metadata: Metadata = {
     "Practical insights on innovation, project management, and AI-powered transformation from DANACH Solutions.",
 };
 
+const toCard = (p: BlogPost): BlogCardData => ({
+  slug: p.slug,
+  title: p.title,
+  excerpt: p.excerpt,
+  dateDisplay: p.dateDisplay,
+  category: p.category,
+  cover: p.cover,
+});
+
 export default function BlogPage() {
-  const groups = getMonthGroups(); // newest month first
-  const archive = getArchive(); // years (newest first) > months
+  const recentGroups = getRecentMonthGroups(RECENT_MONTHS).map((g) => ({
+    id: g.id,
+    label: g.label,
+    posts: g.posts.map(toCard),
+  }));
+  const allPosts = getAllPosts().map(toCard);
+  const categories = Array.from(
+    new Set(getAllPosts().map((p) => p.category)),
+  )
+    .filter(Boolean)
+    .sort();
+  const recentArchive = getRecentArchive(RECENT_MONTHS);
+  const hasMore = getMonthCount() > RECENT_MONTHS;
 
   return (
     <section className="section section-gray">
@@ -23,42 +52,14 @@ export default function BlogPage() {
           </p>
         </div>
 
-        <div className="blog-layout">
-          <div className="blog-main">
-            {groups.map((group) => (
-              <section
-                key={group.id}
-                id={group.id}
-                className="blog-month-group"
-              >
-                <h2 className="blog-month-heading">{group.label}</h2>
-                <div className="blog-grid">
-                  {group.posts.map((post) => (
-                    <BlogCard key={post.slug} post={post} />
-                  ))}
-                </div>
-              </section>
-            ))}
-          </div>
-
-          <aside className="blog-archive" aria-label="Browse posts by date">
-            <h2 className="blog-archive-title">Archive</h2>
-            {archive.map((year, i) => (
-              <details key={year.year} open={i === 0}>
-                <summary>{year.year}</summary>
-                <ul>
-                  {year.months.map((m) => (
-                    <li key={m.id}>
-                      <a href={`#${m.id}`}>
-                        {m.label} <span>({m.count})</span>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </details>
-            ))}
-          </aside>
-        </div>
+        <BlogBrowser
+          recentGroups={recentGroups}
+          allPosts={allPosts}
+          categories={categories}
+          recentArchive={recentArchive}
+          hasMore={hasMore}
+          recentMonths={RECENT_MONTHS}
+        />
       </div>
     </section>
   );
