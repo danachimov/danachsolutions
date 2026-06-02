@@ -226,6 +226,36 @@ export const SERVICE_SECTIONS: ServiceSection[] = [
   },
 ];
 
+// ---- Home: Recent Work carousel ----
+export type RecentProject = { num: string; title: string; desc: string; d: string };
+
+export const RECENT_WORK: RecentProject[] = [
+  {
+    num: "01",
+    title: "Technology Transfer",
+    desc: "Led a complex three-way global partnership, outsourcing the production of a critical component ingredient to a U.S. supplier and coordinating its transfer to a European manufacturer for finished product manufacturing and distribution across European and ASEAN markets.",
+    d: "M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4",
+  },
+  {
+    num: "02",
+    title: "Breakthrough Innovation",
+    desc: "Leveraged cutting-edge ingredients and a sustainable manufacturing process to develop a cost-effective product that outperforms competitive offerings and is currently being evaluated in clinical studies.",
+    d: "M13 10V3L4 14h7v7l9-11h-7z",
+  },
+  {
+    num: "03",
+    title: "EPD Innovation",
+    desc: "Leading the integration of a key probiotic ingredient into a product for the ASEAN market, strengthening competitiveness in a high-growth category and establishing a foundation for future global expansion.",
+    d: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15",
+  },
+  {
+    num: "04",
+    title: "Project & Portfolio Management System (PPM)",
+    desc: "Supported the implementation of an enterprise Project and Portfolio Management system (PPM), integrating stage-gate governance, cost and expense tracking, resource planning, risk and issue management, milestone tracking, and portfolio reporting.",
+    d: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z",
+  },
+];
+
 // ---- About page ----
 export const CREDENTIALS: string[] = [
   "Project Management Professional (PMP)",

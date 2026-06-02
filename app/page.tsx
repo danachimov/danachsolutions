@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import ServiceCard from "./components/ServiceCard";
-import { HOME_SERVICES, CONTACT } from "./data";
+import RecentWork from "./components/RecentWork";
+import { HOME_SERVICES, RECENT_WORK, CONTACT } from "./data";
 
 export default function Home() {
   return (
@@ -127,6 +128,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <RecentWork projects={RECENT_WORK} />
 
       <section className="cta-section">
         <div className="container">

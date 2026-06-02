@@ -1046,6 +1046,97 @@ html.dark .blog-search input { background: var(--bg-card-alt); }
   margin-bottom: 1.5rem;
 }
 .blog-empty { color: var(--text-secondary); }
+
+/* RECENT WORK CAROUSEL */
+.carousel { display: flex; align-items: center; gap: 1rem; }
+.carousel:focus-visible {
+  outline: 2px solid var(--brand-red);
+  outline-offset: 4px;
+  border-radius: 1rem;
+}
+.carousel-viewport { overflow: hidden; flex: 1; min-width: 0; }
+.carousel-track {
+  display: flex;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.carousel-slide { flex: 0 0 100%; min-width: 0; padding: 0 0.5rem; }
+.recent-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-lg);
+  min-height: 18rem;
+  display: flex;
+  flex-direction: column;
+}
+html.dark .recent-card { background: var(--bg-card-alt); }
+@media (min-width: 768px) { .recent-card { padding: 3rem; } }
+.recent-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+.recent-card-head .service-icon { margin-bottom: 0; }
+.recent-num {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1;
+  color: rgba(209, 45, 54, 0.18);
+}
+html.dark .recent-num { color: rgba(209, 45, 54, 0.45); }
+.recent-card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+@media (min-width: 640px) { .recent-card h3 { font-size: 1.875rem; } }
+.recent-card p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 1.0625rem;
+  max-width: 48rem;
+}
+.carousel-arrow {
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+html.dark .carousel-arrow { background: var(--bg-card-alt); }
+.carousel-arrow:hover {
+  background: var(--brand-red);
+  border-color: var(--brand-red);
+  color: #fff;
+}
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.75rem;
+}
+.carousel-dot {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 9999px;
+  border: none;
+  padding: 0;
+  background: var(--border-color);
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.carousel-dot:hover { background: var(--text-muted); }
+.carousel-dot.active { background: var(--brand-red); width: 1.6rem; }
 .blog-archive-title {
   font-size: 0.8125rem;
   font-weight: 700;
