@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import ContactItem from "../components/ContactItem";
+import ContactForm from "../components/ContactForm";
 import { CONTACT } from "../data";
 
 export const metadata: Metadata = {
@@ -123,6 +124,19 @@ export default function ContactPage() {
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="section section-white">
+        <div className="container" style={{ maxWidth: "44rem" }}>
+          <div className="section-header">
+            <h2>Send a Message</h2>
+            <p>
+              Have a question or a project in mind? Send a note and I&apos;ll get
+              back to you.
+            </p>
+          </div>
+          <ContactForm />
         </div>
       </section>
     </>
