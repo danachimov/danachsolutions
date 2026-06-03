@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 import { NAV_LINKS, CONTACT } from "../data";
 import { LinkedInIcon } from "./icons";
+import ScrollTopLink from "./ScrollTopLink";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -36,9 +36,9 @@ export default function Footer() {
               <h4 className="footer-heading">Quick Links</h4>
               <div className="footer-links">
                 {NAV_LINKS.map((item) => (
-                  <Link key={item.href} href={item.href}>
+                  <ScrollTopLink key={item.href} href={item.href}>
                     {item.label}
-                  </Link>
+                  </ScrollTopLink>
                 ))}
                 <a
                   href={CONTACT.linkedin}
@@ -80,9 +80,9 @@ export default function Footer() {
             <p className="footer-copy">
               &copy; {year} DANACH Solutions, LLC. All rights reserved.
             </p>
-            <Link href="/privacy" className="footer-privacy">
+            <ScrollTopLink href="/privacy" className="footer-privacy">
               Privacy Policy
-            </Link>
+            </ScrollTopLink>
           </div>
         </div>
       </div>

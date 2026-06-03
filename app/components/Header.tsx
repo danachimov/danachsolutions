@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NAV_LINKS, CONTACT } from "../data";
 import { LinkedInIcon, MenuIcon } from "./icons";
+import ScrollTopLink from "./ScrollTopLink";
 
 function normalize(path: string): string {
   if (path.length > 1 && path.endsWith("/")) return path.slice(0, -1);
@@ -23,7 +23,11 @@ export default function Header() {
     <header className="site-header">
       <div className="container">
         <div className="header-inner">
-          <Link href="/" className="logo-link" aria-label="DANACH Solutions home">
+          <ScrollTopLink
+            href="/"
+            className="logo-link"
+            aria-label="DANACH Solutions home"
+          >
             <Image
               src="/assets/logo.jpg"
               alt="DANACH Solutions"
@@ -40,17 +44,17 @@ export default function Header() {
               height={610}
               priority
             />
-          </Link>
+          </ScrollTopLink>
 
           <nav className="nav-desktop">
             {NAV_LINKS.map((item) => (
-              <Link
+              <ScrollTopLink
                 key={item.href}
                 href={item.href}
                 className={`nav-link${isActive(item.href) ? " active" : ""}`}
               >
                 {item.label}
-              </Link>
+              </ScrollTopLink>
             ))}
             <a
               href={CONTACT.linkedin}
@@ -85,14 +89,14 @@ export default function Header() {
 
       <div id="mobile-menu" className={`mobile-menu${open ? " open" : ""}`}>
         {NAV_LINKS.map((item) => (
-          <Link
+          <ScrollTopLink
             key={item.href}
             href={item.href}
             className={isActive(item.href) ? "active" : undefined}
             onClick={() => setOpen(false)}
           >
             {item.label}
-          </Link>
+          </ScrollTopLink>
         ))}
         <a
           href={CONTACT.linkedin}
