@@ -42,25 +42,29 @@ export default function BlogPage() {
   const hasMore = getMonthCount() > RECENT_MONTHS;
 
   return (
-    <section className="section section-gray">
-      <div className="container">
-        <div className="section-header">
+    <>
+      <section className="page-hero-dark">
+        <div className="container">
           <h1>Blog</h1>
-          <p className="lead">
+          <p>
             Insights on innovation, project management, and AI in the
             enterprise.
           </p>
         </div>
+      </section>
 
-        <BlogBrowser
-          recentGroups={recentGroups}
-          allPosts={allPosts}
-          categories={categories}
-          recentArchive={recentArchive}
-          hasMore={hasMore}
-          recentMonths={RECENT_MONTHS}
-        />
-      </div>
-    </section>
+      <section className="section section-gray">
+        <div className="container">
+          <BlogBrowser
+            recentGroups={recentGroups}
+            allPosts={allPosts}
+            categories={categories}
+            recentArchive={recentArchive}
+            hasMore={hasMore}
+            recentMonths={RECENT_MONTHS}
+          />
+        </div>
+      </section>
+    </>
   );
 }

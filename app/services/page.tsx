@@ -9,17 +9,20 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return (
-    <section className="section section-gray">
-      <div className="container">
-        <div className="section-header">
+    <>
+      <section className="page-hero-dark">
+        <div className="container">
           <h1>Services</h1>
-          <p className="lead">
+          <p>
             Every engagement is tailored to your organization&apos;s needs,
             maturity, and growth ambitions.
           </p>
         </div>
+      </section>
 
-        <div className="services-list">
+      <section className="section section-gray">
+        <div className="container">
+          <div className="services-list">
           {SERVICE_SECTIONS.map((section) => (
             <Fragment key={section.label}>
               <div className="section-separator">
@@ -49,5 +52,6 @@ export default function ServicesPage() {
         </div>
       </div>
     </section>
+    </>
   );
 }
