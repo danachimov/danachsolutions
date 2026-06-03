@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import ContactItem from "../components/ContactItem";
 import ContactForm from "../components/ContactForm";
 import { CONTACT } from "../data";
@@ -24,17 +23,19 @@ export default function ContactPage() {
       <section className="section section-gray">
         <div className="container">
           <div className="contact-grid">
+            {/* Left: send a message + direct contact details */}
             <div className="contact-info">
               <div>
-                <h2>Get in Touch</h2>
-                <div className="contact-office-image">
-                  <Image
-                    src="/assets/office-building.png"
-                    alt="DANACH Solutions Office - Indianapolis"
-                    width={800}
-                    height={402}
-                  />
-                </div>
+                <h2>Send a Message</h2>
+                <p className="contact-intro">
+                  Have a question or a project in mind? Send a note and I&apos;ll
+                  get back to you.
+                </p>
+                <ContactForm />
+              </div>
+
+              <div>
+                <h3 className="contact-subheading">Or reach me directly</h3>
                 <div className="contact-items">
                   <ContactItem
                     title="Email"
@@ -73,45 +74,13 @@ export default function ContactPage() {
                       {CONTACT.addressLine2}
                     </p>
                   </ContactItem>
-
-                  <ContactItem
-                    title="Schedule a Meeting"
-                    icon={
-                      <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                    }
-                  >
-                    <a
-                      href={CONTACT.calendly}
-                      target="_blank"
-                      rel="noopener"
-                      style={{ color: "var(--brand-red)", fontWeight: 600 }}
-                    >
-                      Book time on Calendly &rarr;
-                    </a>
-                  </ContactItem>
                 </div>
-              </div>
-
-              <div className="contact-red-card">
-                <h3>Prefer to schedule directly?</h3>
-                <p>
-                  Click the button below to book a free 30-minute consultation at
-                  a time that works for you.
-                </p>
-                <a
-                  href={CONTACT.calendly}
-                  target="_blank"
-                  rel="noopener"
-                  className="btn-on-red"
-                >
-                  Book on Calendly
-                </a>
               </div>
             </div>
 
-            <div>
+            {/* Right: book a call */}
+            <div className="contact-schedule">
+              <h2 className="contact-col-title">Prefer to book a call?</h2>
               <div className="calendly-frame">
                 <iframe
                   src={CONTACT.calendlyEmbed}
@@ -124,19 +93,6 @@ export default function ContactPage() {
               </p>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="section section-white">
-        <div className="container" style={{ maxWidth: "44rem" }}>
-          <div className="section-header">
-            <h2>Send a Message</h2>
-            <p>
-              Have a question or a project in mind? Send a note and I&apos;ll get
-              back to you.
-            </p>
-          </div>
-          <ContactForm />
         </div>
       </section>
     </>
