@@ -11,7 +11,7 @@ export default function PrivacyPage() {
       <section className="page-hero-dark">
         <div className="container">
           <h1>Privacy Policy</h1>
-          <p>Last updated: May 25, 2026</p>
+          <p>Last updated: June 2, 2026</p>
         </div>
       </section>
 
@@ -78,10 +78,11 @@ export default function PrivacyPage() {
               <h2>Third-Party Services</h2>
               <p>
                 We use trusted third-party services, including Calendly for
-                scheduling and email providers for correspondence. These services
-                have their own privacy policies governing how they handle data. We
-                do not control and are not responsible for the privacy practices of
-                third-party sites.
+                scheduling, a form-handling service (Web3Forms) that transmits
+                contact-form submissions to us by email, and email providers for
+                correspondence. These services have their own privacy policies
+                governing how they handle data. We do not control and are not
+                responsible for the privacy practices of third-party sites.
               </p>
             </div>
 
