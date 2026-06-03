@@ -2,26 +2,25 @@ import type { Metadata } from "next";
 import PolicyEmbed from "../components/PolicyEmbed";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — DANACH Solutions, LLC",
-  description:
-    "How DANACH Solutions, LLC collects, uses, and safeguards your information.",
+  title: "Terms of Service — DANACH Solutions, LLC",
+  description: "The terms governing use of the DANACH Solutions, LLC website.",
 };
 
-const PRIVACY_EMBED_KEY = "YjNoV2RIVkZNa2Q0ZEdKYVdtYzlQUT09";
+const TERMS_EMBED_KEY = "Umt3M01XWk5NSFJUUjJzMVNYYzlQUT09";
 
-export default function PrivacyPage() {
+export default function TermsPage() {
   return (
     <>
       <section className="page-hero-dark">
         <div className="container">
-          <h1>Privacy Policy</h1>
+          <h1>Terms of Service</h1>
         </div>
       </section>
 
       <section className="section section-gray">
         <div className="container" style={{ maxWidth: "64rem" }}>
           <div className="policy-card">
-            <PolicyEmbed embedKey={PRIVACY_EMBED_KEY} />
+            <PolicyEmbed embedKey={TERMS_EMBED_KEY} />
           </div>
         </div>
       </section>

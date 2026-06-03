@@ -80,9 +80,17 @@ export default function Footer() {
             <p className="footer-copy">
               &copy; {year} DANACH Solutions, LLC. All rights reserved.
             </p>
-            <ScrollTopLink href="/privacy" className="footer-privacy">
-              Privacy Policy
-            </ScrollTopLink>
+            <div className="footer-legal-links">
+              <ScrollTopLink href="/privacy" className="footer-privacy">
+                Privacy Policy
+              </ScrollTopLink>
+              <ScrollTopLink href="/terms" className="footer-privacy">
+                Terms of Service
+              </ScrollTopLink>
+              <ScrollTopLink href="/disclaimer" className="footer-privacy">
+                Disclaimer
+              </ScrollTopLink>
+            </div>
           </div>
         </div>
       </div>

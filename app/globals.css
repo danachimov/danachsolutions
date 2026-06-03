@@ -1354,3 +1354,22 @@ html.dark .footer-logo-dark { display: inline-block; }
   transition: color 0.2s;
 }
 .footer-privacy:hover { color: white; }
+.footer-legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+/* LEGAL / POLICY PAGES (Termageddon embeds) */
+/* The embed ships its own (light) scoped styles, so the card stays white in
+   both themes — like the Calendly frame — so the policy is always readable. */
+.policy-card {
+  background: #fff;
+  color: var(--brand-black);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  padding: 2rem;
+}
+@media (min-width: 768px) { .policy-card { padding: 3rem; } }
+.policy-loading { color: var(--brand-gray); }
+.policy-loading a { color: var(--brand-red); text-decoration: underline; }
