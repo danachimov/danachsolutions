@@ -51,3 +51,7 @@ jobs:
           # upload (wipe server-dir, upload fresh ./out) is deterministic and
           # avoids that. Trade-off: full upload each run + a brief window mid-deploy.
           dangerous-clean-slate: true
+          # Hostinger's FTP control socket is slow to establish and occasionally
+          # times out at the default 30s ("Timeout (control socket)"). Give it
+          # more room to connect before failing.
+          timeout: 120000
