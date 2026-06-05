@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import BlogCard from "../../components/BlogCard";
 import { getMonthGroups, getArchive } from "../posts";
+import { pageMetadata } from "../../lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Blog Archive — DANACH Solutions, LLC",
   description:
     "Browse the full archive of DANACH Solutions posts on innovation, project management, and AI.",
-};
+  path: "/blog/archive/",
+});
 
 export default function BlogArchivePage() {
   const groups = getMonthGroups(); // all months, newest first

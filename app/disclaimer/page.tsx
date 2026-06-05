@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
 import PolicyEmbed from "../components/PolicyEmbed";
+import { pageMetadata } from "../lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Disclaimer — DANACH Solutions, LLC",
   description: "Disclaimer for the DANACH Solutions, LLC website.",
-};
+  path: "/disclaimer/",
+});
 
 const DISCLAIMER_EMBED_KEY = "Y2psYVExbENPRWswUkhGaE5FRTlQUT09";
 

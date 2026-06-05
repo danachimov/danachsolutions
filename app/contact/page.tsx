@@ -1,11 +1,14 @@
-import type { Metadata } from "next";
 import ContactItem from "../components/ContactItem";
 import ContactForm from "../components/ContactForm";
 import { CONTACT } from "../data";
+import { pageMetadata } from "../lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Contact — DANACH Solutions, LLC",
-};
+  description:
+    "Get in touch with DANACH Solutions — send a message, book a free consultation, or reach Dan Achimov directly for innovation and project management consulting.",
+  path: "/contact/",
+});
 
 export default function ContactPage() {
   return (

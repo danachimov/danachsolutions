@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { SITE_URL, SITE_NAME, OG_IMAGE } from "./lib/metadata";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -11,16 +12,62 @@ const poppins = Poppins({
   display: "swap",
 });
 
+const HOME_TITLE =
+  "DANACH Solutions, LLC — Innovation & Project Management Consulting";
 const SHARED_DESCRIPTION =
   "DANACH Solutions, LLC — Innovation & Project Management Consulting for Consumer Packaged Goods. PMP & DASM certified. 35 years experience.";
 
 export const metadata: Metadata = {
-  title: "DANACH Solutions, LLC — Innovation & Project Management Consulting",
+  metadataBase: new URL(SITE_URL),
+  title: HOME_TITLE,
   description: SHARED_DESCRIPTION,
+  alternates: { canonical: "/" },
   icons: {
     icon: "/assets/favicon.png",
     apple: "/assets/favicon.png",
   },
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    url: "/",
+    title: HOME_TITLE,
+    description: SHARED_DESCRIPTION,
+    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: SITE_NAME }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: HOME_TITLE,
+    description: SHARED_DESCRIPTION,
+    images: [OG_IMAGE],
+  },
+};
+
+// Organization + founder structured data (JSON-LD) for richer search results.
+const JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: SITE_NAME,
+  url: SITE_URL,
+  logo: `${SITE_URL}/assets/logo.jpg`,
+  image: `${SITE_URL}${OG_IMAGE}`,
+  description: SHARED_DESCRIPTION,
+  telephone: "+1-812-612-8172",
+  email: "dan@danachsolutions.com",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "8520 Allison Pointe Blvd., Suite 220",
+    addressLocality: "Indianapolis",
+    addressRegion: "IN",
+    postalCode: "46250",
+    addressCountry: "US",
+  },
+  founder: {
+    "@type": "Person",
+    name: "Dan Achimov",
+    jobTitle: "Founder & Principal Consultant",
+    sameAs: ["https://linkedin.com/in/dan-achimov"],
+  },
+  sameAs: ["https://linkedin.com/in/dan-achimov"],
 };
 
 // Auto dark mode: follow the OS preference and live-update on changes.
@@ -48,6 +95,10 @@ export default function RootLayout({
           This only suppresses warnings for <body>'s own attributes. */}
       <body suppressHydrationWarning>
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
+        />
         <Header />
         <main>{children}</main>
         <Footer />

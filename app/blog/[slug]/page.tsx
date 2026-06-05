@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getAllPosts, getPostBySlug } from "../posts";
+import { pageMetadata } from "../../lib/metadata";
 
 // Pre-render one static page per post (required for `output: export`).
 export function generateStaticParams() {
@@ -17,10 +18,11 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) return { title: "Post Not Found — DANACH Solutions, LLC" };
-  return {
+  return pageMetadata({
     title: `${post.title} — DANACH Solutions, LLC`,
     description: post.excerpt,
-  };
+    path: `/blog/${post.slug}/`,
+  });
 }
 
 export default async function BlogPostPage({

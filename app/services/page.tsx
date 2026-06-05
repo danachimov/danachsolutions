@@ -1,11 +1,14 @@
-import type { Metadata } from "next";
 import { Fragment } from "react";
 import ServiceDetail from "../components/ServiceDetail";
 import { SERVICE_SECTIONS, CONTACT } from "../data";
+import { pageMetadata } from "../lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Services — DANACH Solutions, LLC",
-};
+  description:
+    "Innovation strategy & roadmapping, project & program management (PMO), AI transformation, process improvement, and more — consulting tailored to CPG companies.",
+  path: "/services/",
+});
 
 export default function ServicesPage() {
   return (

@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import BlogBrowser from "../components/BlogBrowser";
 import type { BlogCardData } from "../components/BlogCard";
 import {
@@ -8,14 +7,16 @@ import {
   getAllPosts,
   type BlogPost,
 } from "./posts";
+import { pageMetadata } from "../lib/metadata";
 
 const RECENT_MONTHS = 3;
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Blog — DANACH Solutions, LLC",
   description:
-    "Practical insights on innovation, project management, and AI-powered transformation from DANACH Solutions.",
-};
+    "Insights on innovation, project management, and AI in the enterprise — from DANACH Solutions.",
+  path: "/blog/",
+});
 
 const toCard = (p: BlogPost): BlogCardData => ({
   slug: p.slug,

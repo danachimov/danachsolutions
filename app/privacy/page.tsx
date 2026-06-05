@@ -1,11 +1,12 @@
-import type { Metadata } from "next";
 import PolicyEmbed from "../components/PolicyEmbed";
+import { pageMetadata } from "../lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Privacy Policy — DANACH Solutions, LLC",
   description:
     "How DANACH Solutions, LLC collects, uses, and safeguards your information.",
-};
+  path: "/privacy/",
+});
 
 const PRIVACY_EMBED_KEY = "YjNoV2RIVkZNa2Q0ZEdKYVdtYzlQUT09";
 

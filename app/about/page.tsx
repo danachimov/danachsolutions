@@ -1,12 +1,15 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import CredentialPill from "../components/CredentialPill";
 import ExperienceCard from "../components/ExperienceCard";
 import { CREDENTIALS, EXPERIENCE, CONTACT } from "../data";
+import { pageMetadata } from "../lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "About — DANACH Solutions, LLC",
-};
+  description:
+    "Dan Achimov, Founder & Principal Consultant — 35 years leading CPG innovation, new and existing product development, and project management. PMP & DASM certified.",
+  path: "/about/",
+});
 
 export default function AboutPage() {
   return (
