@@ -1,0 +1,27 @@
+# Security headers for DANACH Solutions (static site on Apache/Hostinger).
+# Deployed into public_html via the build (out/.htaccess).
+<IfModule mod_headers.c>
+  # Don't let browsers MIME-sniff responses.
+  Header always set X-Content-Type-Options "nosniff"
+
+  # Clickjacking protection (legacy header; CSP frame-ancestors is the modern one).
+  Header always set X-Frame-Options "DENY"
+
+  # Limit referrer info sent to other sites.
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Disable browser features the site doesn't use.
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), browsing-topics=()"
+
+  # Force HTTPS for a year (no includeSubDomains/preload — conservative).
+  Header always set Strict-Transport-Security "max-age=31536000"
+
+  # Content Security Policy. 'unsafe-inline' is required for a static Next export
+  # (inline theme script, hydration, analytics init). External allowlist matches
+  # the only third parties the site loads:
+  #   plausible.io          - analytics script + events
+  #   api.web3forms.com     - contact form submissions
+  #   embed.termageddon.com - legal policy content (Privacy/Terms/Disclaimer)
+  #   calendly.com          - scheduling iframe (Contact page)
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://plausible.io; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://plausible.io https://api.web3forms.com https://embed.termageddon.com; frame-src https://calendly.com https://*.calendly.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
+</IfModule>
