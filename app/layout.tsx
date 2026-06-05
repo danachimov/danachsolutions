@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -99,6 +100,16 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
         />
+        {/* Plausible — privacy-friendly analytics (cookieless, no consent
+            banner needed). Auto-tracks pageviews (incl. SPA navigation),
+            outbound links, file downloads, and form submissions. */}
+        <Script
+          src="https://plausible.io/js/pa-YB0Kcz2B75bk6dVn4DSjI.js"
+          strategy="afterInteractive"
+        />
+        <Script id="plausible-init" strategy="afterInteractive">
+          {`window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)};plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()`}
+        </Script>
         <Header />
         <main>{children}</main>
         <Footer />
