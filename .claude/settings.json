@@ -1,5 +1,6 @@
 {
   "skillOverrides": {
-    "frontend-design": "user-invocable-only"
+    "frontend-design": "user-invocable-only",
+    "ui-ux-pro-max": "user-invocable-only"
   }
 }
