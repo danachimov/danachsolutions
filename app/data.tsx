@@ -6,6 +6,7 @@ export type NavItem = { href: string; label: string };
 export const NAV_LINKS: NavItem[] = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
+  { href: "/case-studies", label: "Case Studies" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
@@ -253,6 +254,123 @@ export const RECENT_WORK: RecentProject[] = [
     title: "Project & Portfolio Management System (PPM)",
     desc: "Supported the implementation of an enterprise Project and Portfolio Management system (PPM), integrating stage-gate governance, cost and expense tracking, resource planning, risk and issue management, milestone tracking, and portfolio reporting.",
     d: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z",
+  },
+];
+
+// ---- Case Studies page ----
+export type CaseStudyCategory = "pmo" | "governance" | "innovation" | "digital";
+
+export type CaseBlock = {
+  intro?: string;
+  bullets?: string[];
+  note?: string;
+  marker?: "check" | "dot";
+};
+
+export type CaseStudy = {
+  num: string;
+  cat: CaseStudyCategory;
+  catLabel: string;
+  title: string;
+  summary: string;
+  d: string; // icon path
+  outcomes: string[];
+  challenge: CaseBlock;
+  approach: CaseBlock;
+  results: CaseBlock;
+};
+
+export const CASE_STUDY_FILTERS: { key: "all" | CaseStudyCategory; label: string }[] = [
+  { key: "all", label: "All" },
+  { key: "pmo", label: "Project & Program Management" },
+  { key: "governance", label: "Innovation Governance" },
+  { key: "innovation", label: "Innovation Strategy" },
+  { key: "digital", label: "AI & Digital Transformation" },
+];
+
+export const CASE_STUDIES: CaseStudy[] = [
+  {
+    num: "01",
+    cat: "pmo",
+    catLabel: "Project & Program Management",
+    title: "Out-of-the-Box Thinking EPD & Challenging the Status Quo",
+    summary:
+      "Led a Global Existing Product Development (EPD) project to develop and bring to market a portfolio of premature infant formula nursette formulations designed to meet expert recommendations for use in neonatal intensive care units (NICUs). Prematurity is the leading cause of death among children under five, with survivors often facing lifelong health and developmental challenges.",
+    d: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z",
+    outcomes: [
+      "2 years faster to market",
+      "2 formulations, 95% of markets",
+      "Lower COGS & fewer SKUs",
+    ],
+    challenge: {
+      bullets: [
+        "Accelerate global implementation across North America, Latin America, Europe, and ASEAN to address an urgent market and patient need.",
+        "Maximize formulation harmonization across regions to reduce complexity, improve efficiencies, and minimize development and supply chain costs.",
+        "Challenge the traditional development model, which relied on creating a formulation for a lead market and subsequently adapting it for each additional region.",
+        "Overcome a slow and resource-intensive process that increased development timelines, drove higher costs, and resulted in unnecessary SKU proliferation.",
+        "Balance global standardization with regional requirements, ensuring compliance with local regulatory and market requirements without sacrificing speed-to-market.",
+      ],
+    },
+    approach: {
+      bullets: [
+        "Challenged conventional development practices and implemented a globally integrated approach to accelerate delivery and reduce complexity.",
+        "Rapidly assembled a cross-functional, global team representing all in-scope regions and convened an intensive week-long workshop to align requirements and drive decision-making.",
+        "Assessed and validated regulatory, nutritional, and ingredient requirements across all regions, creating harmonized formulations from the outset rather than adapting them market by market.",
+        "Delivered globally viable prototype formulations in record time, reducing development cycles, minimizing SKU proliferation, and improving speed-to-market.",
+      ],
+    },
+    results: {
+      bullets: [
+        "Reduced global implementation timelines by two years, accelerating access to critical nutrition products for vulnerable premature infants.",
+        "Achieved significant formulation harmonization, requiring only two formulations to serve 95% of targeted global markets for the flagship premature infant offering.",
+        "Delivered cost savings by consolidating demand into a smaller number of SKUs, reducing manufacturing complexity and lowering COGS.",
+        "Recognized as a breakthrough innovation, receiving formal team recognition and being featured as a “game-changing” initiative in communications with investors.",
+      ],
+    },
+  },
+  {
+    num: "02",
+    cat: "governance",
+    catLabel: "Innovation Governance",
+    title: "Rapid Technology Assessments (RTA): Faster Decision Making",
+    summary:
+      "Innovation opportunities may originate from many sources — early-stage science, strategic partners, suppliers, or internal ideation. To avoid investing heavily in concepts with limited potential, we implemented a rapid evaluation process to quickly assess technical feasibility, business value, and strategic fit.",
+    d: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z",
+    outcomes: [
+      "Decisions in weeks, not months",
+      "Clear Go / No-Go answer",
+      "Proven across 5+ technologies",
+    ],
+    challenge: {
+      bullets: [
+        "Uncertain value & strategic fit — will the technology solve a meaningful consumer or business problem, address an unmet need, and warrant investment over competing opportunities?",
+        "Pressure to move quickly — the business needs actionable insights rapidly, without the cost and delay of lengthy research and development programs.",
+        "Technical and operational feasibility — can the technology be manufactured at scale and integrated into existing operations, processes, and supply chains?",
+        "Regulatory, safety, and quality risks — can the ingredient or technology meet regulatory requirements while maintaining safety, quality, and compliance standards?",
+        "Resource allocation and investment decisions — with finite funding and resources, which opportunities offer the greatest potential for commercial success and long-term value?",
+      ],
+    },
+    approach: {
+      bullets: [
+        "Assembled a focused cross-functional team spanning Early Science Development, Regulatory, Nutrition Science, Product Development, Supply Chain, Commercial/Marketing, and Project Management.",
+        "Executed a structured 3–4 week sprint designed to answer three critical questions: Can we sell it? Can we register it? Can we make it?",
+        "Conducted a rapid end-to-end assessment of market opportunity, consumer need, ingredient technology, scientific evidence, commercial potential, technical feasibility, regulatory requirements, quality considerations, and business value.",
+        "Identified key risks, mitigation strategies, and implementation considerations to support informed decision-making.",
+        "Delivered clear recommendations to senior R&D leadership, enabling rapid prioritization and investment decisions.",
+      ],
+    },
+    results: {
+      intro:
+        "A dedicated cross-functional team works intensively and in parallel — combining rapid fact-finding with expert engagement to deliver a decision-ready recommendation in weeks rather than months. Each assessment gives leadership a clear answer:",
+      marker: "dot",
+      bullets: [
+        "Go — move forward with development.",
+        "Go with Conditions — address key gaps before investing further.",
+        "Watch — monitor until the ingredient technology matures.",
+        "No-Go — the opportunity does not currently justify investment.",
+      ],
+      note: "Successful RTAs include HMOs, probiotic strains, butyrate, EGCG, and soluble mediators from LGG (SOLEX).",
+    },
   },
 ];
 
