@@ -258,7 +258,12 @@ export const RECENT_WORK: RecentProject[] = [
 ];
 
 // ---- Case Studies page ----
-export type CaseStudyCategory = "pmo" | "governance" | "innovation" | "digital";
+export type CaseStudyCategory =
+  | "pmo"
+  | "portfolio"
+  | "governance"
+  | "innovation"
+  | "digital";
 
 export type CaseBlock = {
   intro?: string;
@@ -283,6 +288,7 @@ export type CaseStudy = {
 export const CASE_STUDY_FILTERS: { key: "all" | CaseStudyCategory; label: string }[] = [
   { key: "all", label: "All" },
   { key: "pmo", label: "Project & Program Management" },
+  { key: "portfolio", label: "Portfolio Management" },
   { key: "governance", label: "Innovation Governance" },
   { key: "innovation", label: "Innovation Strategy" },
   { key: "digital", label: "AI & Digital Transformation" },
@@ -370,6 +376,48 @@ export const CASE_STUDIES: CaseStudy[] = [
         "No-Go — the opportunity does not currently justify investment.",
       ],
       note: "Successful RTAs include HMOs, probiotic strains, butyrate, EGCG, and soluble mediators from LGG (SOLEX).",
+    },
+  },
+  // CS3 — Portfolio Management.
+  {
+    num: "03",
+    cat: "portfolio",
+    catLabel: "Portfolio Management",
+    title: "Bringing Focus to the Global Innovation Portfolio",
+    summary:
+      "A rapidly expanding innovation pipeline had outpaced available resources, creating competing priorities and diluted focus. Portfolio governance and prioritization were needed to align investments with strategy, optimize resource allocation, and concentrate efforts on the opportunities with the greatest potential for success.",
+    d: "M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z",
+    outcomes: [
+      "Focused, prioritized pipeline",
+      "Capacity freed for top work",
+      "Leadership-ready visibility",
+    ],
+    challenge: {
+      bullets: [
+        "Resource overload — too many projects competing for the same limited people, funding, and operational capacity.",
+        "Lack of prioritization discipline — no consistent, objective framework for evaluating and ranking opportunities across regions, categories, and business units.",
+        "Inefficient resource allocation — low-value, stalled, or lower-priority projects continued to consume resources needed for higher-impact initiatives.",
+        "Limited portfolio visibility — leadership lacked a clear, end-to-end view of portfolio performance, including project health, costs, risks, and progress.",
+        "Strategic misalignment — the active project portfolio had drifted from the company's strategic priorities, reducing focus on the opportunities most likely to drive growth and value.",
+      ],
+    },
+    approach: {
+      bullets: [
+        "Implemented a transparent portfolio prioritization framework using common criteria — strategic alignment, business value, feasibility, and risk — to consistently evaluate and rank all projects.",
+        "Established a structured portfolio governance process integrated with stage-gate reviews, enabling leadership to make informed decisions to accelerate, hold, redirect, or stop projects.",
+        "Aligned resource capacity with portfolio demand, identifying bottlenecks and reallocating talent and funding to the highest-priority initiatives.",
+        "Created executive portfolio dashboards providing real-time visibility into pipeline health, investment levels, milestones, risks, and the balance between short-term and long-term growth opportunities.",
+        "Optimized portfolio investment and focus by pausing or terminating lower-value initiatives and concentrating resources on projects with the greatest strategic and commercial potential.",
+      ],
+    },
+    results: {
+      bullets: [
+        "Created a focused, strategically aligned innovation portfolio, concentrating resources and investment on the opportunities with the greatest potential for growth and value creation.",
+        "Unlocked critical capacity by pausing or retiring lower-priority initiatives, enabling faster execution of the most important projects.",
+        "Improved the speed and quality of investment decisions through a consistent evaluation framework and disciplined portfolio review process.",
+        "Delivered comprehensive portfolio visibility for senior leadership, providing a single view of costs, progress, risks, resource utilization, and strategic alignment.",
+        "Established a sustainable portfolio governance model, embedding the processes, tools, and decision-making discipline needed to drive long-term portfolio performance.",
+      ],
     },
   },
 ];
