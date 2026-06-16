@@ -34,7 +34,15 @@ jobs:
       - name: Build static export
         run: npm run build
 
+      # Hostinger's FTP control socket occasionally times out
+      # ("Timeout (control socket)") — a transient connection failure, not a
+      # content problem. Attempt 1 is allowed to fail (continue-on-error) so the
+      # retry step below can self-heal the run, rather than failing the whole job
+      # and emailing a false alarm. clean-slate makes the retry safe: it wipes
+      # and re-uploads a fresh ./out each time.
       - name: Deploy ./out to Hostinger via FTP
+        id: ftp_deploy
+        continue-on-error: true
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -54,4 +62,18 @@ jobs:
           # Hostinger's FTP control socket is slow to establish and occasionally
           # times out at the default 30s ("Timeout (control socket)"). Give it
           # more room to connect before failing.
+          timeout: 120000
+
+      # Auto-retry once if attempt 1 timed out. If this attempt also fails, the
+      # job fails for real (no continue-on-error here).
+      - name: Deploy ./out to Hostinger via FTP (retry)
+        if: steps.ftp_deploy.outcome == 'failure'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./out/
+          server-dir: ./
+          dangerous-clean-slate: true
           timeout: 120000
