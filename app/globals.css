@@ -298,9 +298,7 @@ html.dark .hero { background: #000; }
 /* SECTIONS */
 .section { padding: 5rem 0; }
 .section-white { background: var(--bg-page); }
-.section-gray { background: var(--bg-section); }
-.section-red { background: var(--brand-red); }
-.section-header { text-align: center; margin-bottom: 4rem; }
+.section-gray { background: var(--bg-section); }.section-header { text-align: center; margin-bottom: 4rem; }
 .section-header h2 {
   font-size: 1.875rem;
   font-weight: 700;
@@ -689,17 +687,6 @@ html.dark .experience-card { background: var(--bg-card-alt); }
   color: var(--text-primary);
   margin-bottom: 1.5rem;
 }
-.contact-office-image {
-  margin-bottom: 2rem;
-  border-radius: 0.75rem;
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
-}
-.contact-office-image img {
-  width: 100%;
-  height: 12rem;
-  object-fit: cover;
-}
 .contact-items { display: flex; flex-direction: column; gap: 1.5rem; }
 .contact-item { display: flex; align-items: flex-start; gap: 1rem; }
 .contact-icon {
@@ -722,30 +709,6 @@ html.dark .contact-icon { background: rgba(209,45,54,0.2); }
   color: var(--text-secondary);
 }
 .contact-item a:hover { color: var(--brand-red); }
-.contact-red-card {
-  background: var(--brand-red);
-  border-radius: 0.75rem;
-  padding: 2rem;
-  color: white;
-}
-.contact-red-card h3 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-.contact-red-card p {
-  color: rgba(255,255,255,0.8);
-  margin-bottom: 1.5rem;
-}
-.btn-on-red {
-  padding: 0.75rem 1.5rem;
-  background: white;
-  color: var(--brand-red);
-  font-weight: 700;
-  border-radius: 0.5rem;
-  display: inline-block;
-}
-.btn-on-red:hover { background: #F3F4F6; }
 .calendly-frame {
   background: white;
   border-radius: 1rem;
@@ -1227,37 +1190,6 @@ html.dark .contact-form-status.success { color: #4ade80; }
   color: var(--text-muted);
 }
 
-/* PRIVACY POLICY PAGE */
-.privacy-card {
-  background: var(--bg-card);
-  border-radius: 1rem;
-  border: 1px solid var(--border-color);
-  padding: 2rem;
-}
-html.dark .privacy-card { background: var(--bg-card-alt); }
-@media (min-width: 768px) { .privacy-card { padding: 3rem; } }
-.privacy-section { margin-bottom: 2rem; }
-.privacy-section:last-child { margin-bottom: 0; }
-.privacy-section h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 0.75rem;
-}
-.privacy-section p, .privacy-section li {
-  color: var(--text-secondary);
-  line-height: 1.625;
-}
-.privacy-section ul {
-  list-style: disc;
-  padding-left: 1.5rem;
-  margin: 0.75rem 0;
-}
-.privacy-section li { margin-bottom: 0.25rem; }
-.privacy-section a { color: var(--brand-red); }
-.privacy-section a:hover { text-decoration: underline; }
-.privacy-section strong { color: var(--text-primary); }
-
 /* FOOTER */
 .site-footer {
   background: var(--brand-black);
@@ -1392,24 +1324,6 @@ html.dark .footer-logo-dark { display: inline-block; }
   color: #9CA3AF;
   margin-top: 0.35rem;
 }
-
-/* Confidentiality note */
-.cs-note {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.6rem;
-  max-width: 44rem;
-  margin: 0 auto 2.5rem;
-  padding: 0.9rem 1.15rem;
-  background: rgba(209, 45, 54, 0.06);
-  border: 1px solid rgba(209, 45, 54, 0.18);
-  border-radius: 0.625rem;
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-}
-html.dark .cs-note { background: rgba(209, 45, 54, 0.1); }
-.cs-note svg { flex-shrink: 0; color: var(--brand-red); margin-top: 0.1rem; }
 
 /* Filter bar */
 .cs-filter {
