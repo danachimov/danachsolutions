@@ -84,7 +84,7 @@ html.dark .site-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 0;
+  padding: 6px 0;
 }
 .logo-link { display: flex; align-items: center; }
 .logo-light { display: block; height: 7rem; width: auto; object-fit: contain; }
