@@ -9,7 +9,50 @@ export const NAV_LINKS: NavItem[] = [
   { href: "/case-studies", label: "Case Studies" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
+  { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
+];
+
+// ---- FAQ page ----
+export type FaqItem = { q: string; a: string };
+
+export const FAQ: FaqItem[] = [
+  {
+    q: "What does DANACH Solutions do, and who do you work with?",
+    a: "I provide innovation and project management consulting for consumer packaged goods companies — with deep expertise in infant nutrition, food, beverage, and wellness. I partner with leaders to drive new and existing product development, lead complex global programs, and put AI-powered ways of working into practice.",
+  },
+  {
+    q: "What size of organization do you work with?",
+    a: "From scaling startups to large enterprise R&D and innovation teams. Each engagement is tailored to your stage — whether you need hands-on program leadership, strategic guidance, or help establish repeatable processes.",
+  },
+  {
+    q: "How do you typically engage?",
+    a: "Flexibly — project- and program-based leadership, fractional or interim innovation and PM leadership, advisory support, and focused workshops such as rapid technology assessments. I scope the right model to your goals in an initial conversation.",
+  },
+  {
+    q: "Do you work remotely and on-site?",
+    a: "Yes. Work is delivered remotely and on-site as needed. I make full use of collaboration tools such as Miro and video conferencing. Effective communication is essential.",
+  },
+  {
+    q: "What does “AI-powered transformation” actually involve?",
+    a: "Applying AI pragmatically to how innovation and projects get done — accelerating research and assessments, streamlining documentation and reporting, and freeing your team to focus on higher-value decisions. I start where AI delivers the clearest, fastest return.",
+  },
+  {
+    q: "How are engagements priced?",
+    a: "Pricing is scoped to each engagement's goals, duration, and level of involvement. The simplest way to get an estimate is to book a free consultation so I can understand your needs.",
+  },
+  {
+    q: "What is your lead time for an engagement?",
+    a: "I typically have a 3–6 month lead time, depending on the nature of the engagement. This may vary at any time, and I will always provide honest, direct feedback on timing when we speak.",
+  },
+  {
+    q: "What happens after you book a call?",
+    a: "We start with a free, no-obligation consultation to understand your goals and challenges. From there, we outline a recommended approach and scope. If we take it to the next level, you can expect a detailed proposal, and if accepted — a formal contract.",
+  },
+  {
+    q: "How do you handle confidentiality?",
+    a: "Client confidentiality is paramount. Proprietary information is protected under appropriate confidentiality terms. It would be customary for us both to sign a formal CDA (Confidentiality Agreement). Anything public — like my case studies — is anonymized, described in broad strokes with names, brands, and proprietary details omitted.",
+  },
 ];
 
 export const CONTACT = {
