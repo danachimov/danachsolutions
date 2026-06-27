@@ -5,6 +5,7 @@ import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { SITE_URL, SITE_NAME, OG_IMAGE } from "./lib/metadata";
+import { CONTACT } from "./data";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -52,11 +53,11 @@ const JSON_LD = {
   logo: `${SITE_URL}/assets/logo.jpg`,
   image: `${SITE_URL}${OG_IMAGE}`,
   description: SHARED_DESCRIPTION,
-  telephone: "+1-812-612-8172",
-  email: "dan@danachsolutions.com",
+  telephone: CONTACT.phone,
+  email: CONTACT.email,
   address: {
     "@type": "PostalAddress",
-    streetAddress: "8520 Allison Pointe Blvd., Suite 220",
+    streetAddress: CONTACT.addressLine1,
     addressLocality: "Indianapolis",
     addressRegion: "IN",
     postalCode: "46250",
@@ -66,9 +67,9 @@ const JSON_LD = {
     "@type": "Person",
     name: "Dan Achimov",
     jobTitle: "Founder & Principal Consultant",
-    sameAs: ["https://linkedin.com/in/dan-achimov"],
+    sameAs: [CONTACT.linkedin],
   },
-  sameAs: ["https://linkedin.com/in/dan-achimov"],
+  sameAs: [CONTACT.linkedin],
 };
 
 // Auto dark mode: follow the OS preference and live-update on changes.
