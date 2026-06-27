@@ -28,21 +28,43 @@ export type BlogPost = {
   html: string; // rendered post body
 };
 
-function dateDisplay(iso: string): string {
-  const [y, m, d] = iso.split("-").map(Number);
-  return `${MONTHS[m - 1]} ${d}, ${y}`;
+// Parse a frontmatter date robustly. Accepts YYYY-MM-DD and tolerates
+// single-digit month/day and "/" separators. Returns a zero-padded ISO
+// (so lexical sorting/grouping is correct) plus a display string — or
+// valid:false so callers degrade gracefully instead of crashing the build.
+function parseDate(input: string): {
+  iso: string;
+  display: string;
+  valid: boolean;
+} {
+  const m = input.trim().match(/^(\d{4})[-/](\d{1,2})[-/](\d{1,2})$/);
+  if (!m) return { iso: "", display: "", valid: false };
+  const y = Number(m[1]);
+  const mo = Number(m[2]);
+  const d = Number(m[3]);
+  if (mo < 1 || mo > 12 || d < 1 || d > 31) {
+    return { iso: "", display: "", valid: false };
+  }
+  const iso = `${y}-${String(mo).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+  return { iso, display: `${MONTHS[mo - 1]} ${d}, ${y}`, valid: true };
 }
 
 function parseFile(filename: string): BlogPost {
   const raw = fs.readFileSync(path.join(BLOG_DIR, filename), "utf8");
   const { data, content } = matter(raw);
   const slug = String(data.slug || filename.replace(/\.md$/, ""));
-  const iso = String(data.date || "");
+  const rawDate = String(data.date || "");
+  const parsed = parseDate(rawDate);
+  if (rawDate && !parsed.valid) {
+    console.warn(
+      `[blog] ${filename}: unparseable date "${rawDate}" — expected YYYY-MM-DD; treating as undated.`,
+    );
+  }
   return {
     slug,
     title: String(data.title || "Untitled"),
-    date: iso,
-    dateDisplay: String(data.dateDisplay || (iso ? dateDisplay(iso) : "")),
+    date: parsed.iso, // normalized zero-padded ISO ("" if missing/invalid)
+    dateDisplay: String(data.dateDisplay || parsed.display),
     category: String(data.category || ""),
     author: String(data.author || "Dan Achimov"),
     readingTime: String(data.readingTime || ""),
@@ -75,13 +97,13 @@ export type ArchiveMonth = { id: string; label: string; count: number };
 export type ArchiveYear = { year: string; months: ArchiveMonth[] };
 
 function monthMeta(iso: string) {
-  const [y, m] = iso.split("-");
-  return {
-    year: y,
-    monthName: MONTHS[Number(m) - 1],
-    id: `m-${y}-${m}`,
-    label: `${MONTHS[Number(m) - 1]} ${y}`,
-  };
+  const m = iso.match(/^(\d{4})-(\d{2})/);
+  if (!m) {
+    return { year: "—", monthName: "Undated", id: "m-undated", label: "Undated" };
+  }
+  const [, y, mm] = m;
+  const monthName = MONTHS[Number(mm) - 1] ?? "Undated";
+  return { year: y, monthName, id: `m-${y}-${mm}`, label: `${monthName} ${y}` };
 }
 
 // Posts grouped into month sections.

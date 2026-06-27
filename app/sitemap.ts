@@ -25,10 +25,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: now,
   }));
 
-  const posts: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
-    url: `${SITE_URL}/blog/${post.slug}/`,
-    lastModified: new Date(post.date),
-  }));
+  const posts: MetadataRoute.Sitemap = getAllPosts().map((post) => {
+    const when = post.date ? new Date(post.date) : null;
+    return {
+      url: `${SITE_URL}/blog/${post.slug}/`,
+      lastModified: when && !Number.isNaN(when.getTime()) ? when : now,
+    };
+  });
 
   return [...pages, ...posts];
 }

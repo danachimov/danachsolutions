@@ -22,6 +22,16 @@ export async function generateMetadata({
     title: `${post.title} — DANACH Solutions, LLC`,
     description: post.excerpt,
     path: `/blog/${post.slug}/`,
+    ...(post.cover.src
+      ? {
+          image: {
+            url: post.cover.src,
+            width: post.cover.width,
+            height: post.cover.height,
+            alt: post.cover.alt,
+          },
+        }
+      : {}),
   });
 }
 
