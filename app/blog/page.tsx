@@ -2,6 +2,7 @@ import BlogBrowser from "../components/BlogBrowser";
 import type { BlogCardData } from "../components/BlogCard";
 import {
   getRecentMonthGroups,
+  getMonthGroups,
   getRecentArchive,
   getMonthCount,
   getAllPosts,
@@ -33,7 +34,10 @@ export default function BlogPage() {
     label: g.label,
     posts: g.posts.map(toCard),
   }));
-  const allPosts = getAllPosts().map(toCard);
+  // Flatten the month groups so search results share the exact display order
+  // of the default view (months newest-first, oldest-first within each month),
+  // instead of the flat newest-first order getAllPosts() returns.
+  const allPosts = getMonthGroups().flatMap((g) => g.posts).map(toCard);
   const categories = Array.from(
     new Set(getAllPosts().map((p) => p.category)),
   )

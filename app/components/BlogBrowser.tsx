@@ -28,8 +28,17 @@ export default function BlogBrowser({
   const [query, setQuery] = useState("");
   const q = query.trim().toLowerCase();
   const filtering = q.length > 0;
+  // If the query exactly names a category (a chip click, or the full category
+  // typed), match that category exactly — otherwise "Project Management" would
+  // also pull in "AI in Project Management". Partial text (e.g. "AI") still
+  // substring-matches so free-text search keeps working.
+  const exactCategory = categories.some((c) => c.toLowerCase() === q);
   const results = filtering
-    ? allPosts.filter((p) => p.category.toLowerCase().includes(q))
+    ? allPosts.filter((p) =>
+        exactCategory
+          ? p.category.toLowerCase() === q
+          : p.category.toLowerCase().includes(q),
+      )
     : [];
 
   return (
