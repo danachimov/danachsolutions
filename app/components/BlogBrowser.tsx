@@ -30,14 +30,17 @@ export default function BlogBrowser({
   const filtering = q.length > 0;
   // If the query exactly names a category (a chip click, or the full category
   // typed), match that category exactly — otherwise "Project Management" would
-  // also pull in "AI in Project Management". Partial text (e.g. "AI") still
-  // substring-matches so free-text search keeps working.
+  // also pull in "AI in Project Management". Partial text (e.g. "AI") also
+  // matches title and excerpt so a post stays findable by its own name even
+  // when no category shares the wording (e.g. "Scope Creep").
   const exactCategory = categories.some((c) => c.toLowerCase() === q);
   const results = filtering
     ? allPosts.filter((p) =>
         exactCategory
           ? p.category.toLowerCase() === q
-          : p.category.toLowerCase().includes(q),
+          : p.category.toLowerCase().includes(q) ||
+            p.title.toLowerCase().includes(q) ||
+            p.excerpt.toLowerCase().includes(q),
       )
     : [];
 
@@ -99,7 +102,7 @@ export default function BlogBrowser({
           <input
             id="blog-search-input"
             type="search"
-            placeholder="e.g. AI, Scope Creep…"
+            placeholder="e.g. AI, Project Management…"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />

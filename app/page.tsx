@@ -55,9 +55,9 @@ export default function Home() {
             <div>
               <div className="hero-image-wrap">
                 <Image
-                  src="/assets/hero-home.jpg"
+                  src="/assets/hero-home-2.jpg"
                   alt="Corporate innovation team"
-                  width={1400}
+                  width={1388}
                   height={868}
                   priority
                 />
