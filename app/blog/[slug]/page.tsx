@@ -22,6 +22,10 @@ export async function generateMetadata({
     title: `${post.title} — DANACH Solutions, LLC`,
     description: post.excerpt,
     path: `/blog/${post.slug}/`,
+    article: {
+      ...(post.date ? { publishedTime: post.date } : {}),
+      author: post.author,
+    },
     ...(post.cover.src
       ? {
           image: {

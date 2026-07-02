@@ -58,9 +58,9 @@ const JSON_LD = {
   address: {
     "@type": "PostalAddress",
     streetAddress: CONTACT.addressLine1,
-    addressLocality: "Indianapolis",
-    addressRegion: "IN",
-    postalCode: "46250",
+    addressLocality: CONTACT.city,
+    addressRegion: CONTACT.state,
+    postalCode: CONTACT.zip,
     addressCountry: "US",
   },
   founder: {

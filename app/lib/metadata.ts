@@ -12,6 +12,7 @@ export function pageMetadata({
   description,
   path,
   image,
+  article,
 }: {
   title: string;
   description: string;
@@ -19,22 +20,32 @@ export function pageMetadata({
   // Optional per-page social image (e.g. a blog post's cover). Relative URLs
   // are resolved against metadataBase. Defaults to the site OG image.
   image?: { url: string; width: number; height: number; alt?: string };
+  // Blog posts pass this to emit og:type "article" (with published time and
+  // author) instead of the default "website".
+  article?: { publishedTime?: string; author?: string };
 }): Metadata {
   const og = image ?? { url: OG_IMAGE, width: 1200, height: 630, alt: SITE_NAME };
+  const shared = {
+    siteName: SITE_NAME,
+    url: path,
+    title,
+    description,
+    images: [
+      { url: og.url, width: og.width, height: og.height, alt: og.alt ?? SITE_NAME },
+    ],
+  };
   return {
     title,
     description,
     alternates: { canonical: path },
-    openGraph: {
-      type: "website",
-      siteName: SITE_NAME,
-      url: path,
-      title,
-      description,
-      images: [
-        { url: og.url, width: og.width, height: og.height, alt: og.alt ?? SITE_NAME },
-      ],
-    },
+    openGraph: article
+      ? {
+          type: "article",
+          ...(article.publishedTime ? { publishedTime: article.publishedTime } : {}),
+          ...(article.author ? { authors: [article.author] } : {}),
+          ...shared,
+        }
+      : { type: "website", ...shared },
     twitter: {
       card: "summary_large_image",
       title,

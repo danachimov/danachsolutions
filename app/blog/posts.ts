@@ -29,20 +29,28 @@ export type BlogPost = {
 };
 
 // Parse a frontmatter date robustly. Accepts YYYY-MM-DD and tolerates
-// single-digit month/day and "/" separators. Returns a zero-padded ISO
-// (so lexical sorting/grouping is correct) plus a display string — or
-// valid:false so callers degrade gracefully instead of crashing the build.
+// single-digit month/day and "/" separators (but not mixed ones). Returns a
+// zero-padded ISO (so lexical sorting/grouping is correct) plus a display
+// string — or valid:false so callers degrade gracefully instead of crashing
+// the build.
 function parseDate(input: string): {
   iso: string;
   display: string;
   valid: boolean;
 } {
-  const m = input.trim().match(/^(\d{4})[-/](\d{1,2})[-/](\d{1,2})$/);
+  const m = input.trim().match(/^(\d{4})([-/])(\d{1,2})\2(\d{1,2})$/);
   if (!m) return { iso: "", display: "", valid: false };
   const y = Number(m[1]);
-  const mo = Number(m[2]);
-  const d = Number(m[3]);
-  if (mo < 1 || mo > 12 || d < 1 || d > 31) {
+  const mo = Number(m[3]);
+  const d = Number(m[4]);
+  // Round-trip through Date.UTC so impossible calendar dates (2026-02-31)
+  // are rejected instead of rendering as "February 31, 2026".
+  const dt = new Date(Date.UTC(y, mo - 1, d));
+  if (
+    dt.getUTCFullYear() !== y ||
+    dt.getUTCMonth() !== mo - 1 ||
+    dt.getUTCDate() !== d
+  ) {
     return { iso: "", display: "", valid: false };
   }
   const iso = `${y}-${String(mo).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
@@ -82,8 +90,11 @@ function parseFile(filename: string): BlogPost {
 export function getAllPosts(): BlogPost[] {
   if (!fs.existsSync(BLOG_DIR)) return [];
   const files = fs.readdirSync(BLOG_DIR).filter((f) => f.endsWith(".md"));
-  // Newest first — the blog always opens to the latest posts.
-  return files.map(parseFile).sort((a, b) => (a.date < b.date ? 1 : -1));
+  // Newest first — the blog always opens to the latest posts. Tie-break on
+  // slug so same-day posts keep a stable order across builds.
+  return files
+    .map(parseFile)
+    .sort((a, b) => b.date.localeCompare(a.date) || a.slug.localeCompare(b.slug));
 }
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
@@ -99,7 +110,10 @@ export type ArchiveYear = { year: string; months: ArchiveMonth[] };
 function monthMeta(iso: string) {
   const m = iso.match(/^(\d{4})-(\d{2})/);
   if (!m) {
-    return { year: "—", monthName: "Undated", id: "m-undated", label: "Undated" };
+    // "m-0000-00" sorts after every real "m-YYYY-MM" under the descending
+    // compare below, so an undated post lands at the bottom of /blog instead
+    // of displacing the newest month at the top.
+    return { year: "—", monthName: "Undated", id: "m-0000-00", label: "Undated" };
   }
   const [, y, mm] = m;
   const monthName = MONTHS[Number(mm) - 1] ?? "Undated";
@@ -120,11 +134,15 @@ export function getMonthGroups(): MonthGroup[] {
     }
     group.posts.push(post);
   }
-  // Newest month first (id is "m-YYYY-MM", so lexical compare works).
-  groups.sort((a, b) => (a.id < b.id ? 1 : -1));
-  // Within each month: earliest post first (chronological).
+  // Newest month first (id is "m-YYYY-MM", so lexical compare works; ids are
+  // unique per group so no tie-break is needed).
+  groups.sort((a, b) => b.id.localeCompare(a.id));
+  // Within each month: earliest post first (chronological), slug tie-break
+  // for a stable order when posts share a date.
   for (const group of groups) {
-    group.posts.sort((a, b) => (a.date > b.date ? 1 : -1));
+    group.posts.sort(
+      (a, b) => a.date.localeCompare(b.date) || a.slug.localeCompare(b.slug),
+    );
   }
   return groups;
 }

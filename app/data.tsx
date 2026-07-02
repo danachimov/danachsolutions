@@ -55,12 +55,24 @@ export const FAQ: FaqItem[] = [
   },
 ];
 
+// Structured address parts — the single source for both the visible
+// "City, ST ZIP" line and the JSON-LD PostalAddress in the root layout.
+const ADDRESS = {
+  street: "8520 Allison Pointe Blvd., Suite 220",
+  city: "Indianapolis",
+  state: "IN",
+  zip: "46250",
+};
+
 export const CONTACT = {
   email: "dan@danachsolutions.com",
   phone: "+1 (812) 612-8172",
   phoneHref: "tel:+18126128172",
-  addressLine1: "8520 Allison Pointe Blvd., Suite 220",
-  addressLine2: "Indianapolis, IN 46250",
+  city: ADDRESS.city,
+  state: ADDRESS.state,
+  zip: ADDRESS.zip,
+  addressLine1: ADDRESS.street,
+  addressLine2: `${ADDRESS.city}, ${ADDRESS.state} ${ADDRESS.zip}`,
   calendly: "https://calendly.com/dan-danachsolutions",
   calendlyEmbed:
     "https://calendly.com/dan-danachsolutions?embed_domain=danachsolutions.com&embed_type=Inline&hide_event_type_details=0&hide_gdpr_banner=1",
