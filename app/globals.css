@@ -919,6 +919,9 @@ html.dark .blog-card:hover { border-color: var(--brand-red); }
 .blog-body ul { list-style: disc; }
 .blog-body ol { list-style: decimal; }
 .blog-body li { margin-bottom: 0.5rem; }
+/* Indented block for a heading + list (wrap in <div class="blog-indent">) */
+.blog-body .blog-indent { padding-left: 2rem; }
+.blog-body .blog-indent > :first-child { margin-top: 0; }
 .blog-body strong { color: var(--text-primary); font-weight: 700; }
 .blog-body blockquote p {
   margin: 0;
